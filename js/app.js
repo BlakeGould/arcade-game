@@ -23,8 +23,6 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
 
-
-
     // update Enemy location
     if (this.x > 505) {
         this.x = -100;
@@ -71,9 +69,11 @@ Player.prototype.handleInput = function () {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy];
+var allEnemies = [];
 var player = new Player;
-
+for (var i = 0; i < 4; i++){
+    allEnemies.push(new Enemy);
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
