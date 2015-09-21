@@ -31,6 +31,7 @@ Enemy.prototype.update = function(dt) {
     }
     // handle collision with Player
 
+
 }
 
 // Draw the enemy on the screen, required method for game
@@ -62,16 +63,20 @@ Player.prototype.render = function () {
 Player.prototype.handleInput = function (keys) {
     switch(keys){
         case 'up':
-            this.y -= 83;
+            if (this.y >0) {
+                this.y -= 83;};
             break;
         case 'down':
-            this.y += 83;
+            if (this.y < 405) {
+                this.y += 83;};
             break;
         case 'left':
-            this.x -= 101;
+            if (this.x >0) {
+                this.x -= 101;};
             break;
         case 'right':
-            this.x += 101;
+            if (this.x < 404) {
+                this.x += 101;};
             break;
     }
 
