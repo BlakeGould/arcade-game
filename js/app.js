@@ -69,7 +69,7 @@ Player.prototype.update = function () {
         this.y = 405; // Reset player to beginning
         level += 1; // Increase level by 1
         allEnemies.push(new Enemy); //add a new enemy to the game
-        console.log('Current level is: ' + level);
+        console.log('CURRENT LEVEL IS: ' + level);
     }
 }
 
@@ -77,40 +77,36 @@ Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-//Create move
+//Create move counter
 var moves = -1;
 
 //Handle key input
 Player.prototype.handleInput = function (keys) {
     moves += 1;
+    var mplRatio = Math.round(10 * (moves/level))/10
+    console.log(mplRatio + ' moves per level so far...')
     switch(keys){
         case 'up':
             if (this.y >0) {
                 this.y -= 83;
-                console.log('player y is ' + this.y);
             };
             break;
         case 'down':
             if (this.y < 405) {
                 this.y += 83;
-                console.log('player y is ' + this.y);
             };
             break;
         case 'left':
             if (this.x >0) {
                 this.x -= 101;
-                console.log('player x is ' + this.x);
             };
             break;
         case 'right':
             if (this.x < 404) {
                 this.x += 101;
-                console.log('player x is ' + this.x);
             };
             break;
     }
-    console.log(moves + ' moves so far...')
-
 }
 
 

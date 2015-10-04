@@ -12,3 +12,4 @@ To play the game:
 1) Use arrow keys to move the character up, down, left, or right
 2) If the player moves into an enemy, the game(and the level count) are reset.
 3) After every successful crossing the level increases, along with the number of enemies...
+4) Open the console to view current level and current moves per level.
