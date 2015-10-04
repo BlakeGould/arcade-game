@@ -8,7 +8,7 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
 
     // set Enemy initial location
-    this.x = -100;
+    this.x = -101;
     this.y = 83 * Math.floor(Math.random() * 3) + 65;
 
     // set Enemy initial speed
@@ -30,7 +30,30 @@ Enemy.prototype.update = function(dt) {
         this.speed = 60 * Math.floor(Math.random() * 3 + 1);
     }
     // handle collision with Player
+    if (
+        player.x >= this.x - 83 &&
+        player.x <= this.x + 83 &&
+        player.y >= this.y - 20 &&
+        player.y <= this.y + 80
+        ) {
+        level = 0;
+        console.log("Current level is: " + level);
+        player.x = 202;
+        player.y = 405;
+    }
 
+
+    // tests for collision logic
+    // if (3 <= 5 && 8 <= 10) {
+    //     console.log("Nailed it!");
+    // }
+    // if (
+    // 6 - 6 <= 5 &&
+    // 8 <= 10 &&
+    // 3===3 &&
+    // 5>4) {
+    //     console.log("Nailed it twice!");
+    // }
 
 }
 
@@ -48,12 +71,21 @@ var Player = function() {
     //set Player initial location
     this.x = 202;
     this.y = 405;
-
+    // this.x = 0;
+    // this.y = 0;
 
 }
 
+var level = 0;
+
 Player.prototype.update = function () {
     // similar to update method for Enemy
+    if (this.y === -10) {
+        this.x = 202;
+        this.y = 405;
+        level += 1;
+        console.log("Current level is: " + level);
+    }
 }
 
 Player.prototype.render = function () {
@@ -64,19 +96,27 @@ Player.prototype.handleInput = function (keys) {
     switch(keys){
         case 'up':
             if (this.y >0) {
-                this.y -= 83;};
+                this.y -= 83;
+                console.log("player y is " + this.y);
+            };
             break;
         case 'down':
             if (this.y < 405) {
-                this.y += 83;};
+                this.y += 83;
+                console.log("player y is " + this.y);
+            };
             break;
         case 'left':
             if (this.x >0) {
-                this.x -= 101;};
+                this.x -= 101;
+                console.log("player x is " + this.x);
+            };
             break;
         case 'right':
             if (this.x < 404) {
-                this.x += 101;};
+                this.x += 101;
+                console.log("player x is " + this.x);
+            };
             break;
     }
 
@@ -88,7 +128,7 @@ Player.prototype.handleInput = function (keys) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [];
+var allEnemies = [new Enemy];
 var player = new Player;
 for (var i = 0; i < 4; i++){
     allEnemies.push(new Enemy);
