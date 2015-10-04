@@ -23,7 +23,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
 
-    // update Enemy location
+    // update Enemy location to a new random lane preset and random speed preset after clearing the game board
     if (this.x > 505) {
         this.x = -100;
         this.y = 83 * Math.floor(Math.random() * 3) + 65;
@@ -36,11 +36,11 @@ Enemy.prototype.update = function(dt) {
         player.y >= this.y - 20 &&
         player.y <= this.y + 80
         ) {
-        level = 1;
-        console.log("Current level is: " + level);
-        player.x = 202;
+        level = 1; // Reset the level
+        console.log('Current level is: ' + level);
+        player.x = 202; //Return player to starting position
         player.y = 405;
-        allEnemies = [new Enemy];
+        allEnemies = [new Enemy]; //Reset to one enemy
     }
 }
 
@@ -62,14 +62,14 @@ var Player = function() {
 
 var level = 1;
 
+//Update for win
 Player.prototype.update = function () {
-    // similar to update method for Enemy
     if (this.y === -10) {
-        this.x = 202;
-        this.y = 405;
-        level += 1;
-        allEnemies.push(new Enemy);
-        console.log("Current level is: " + level);
+        this.x = 202; // Reset player to beginning
+        this.y = 405; // Reset player to beginning
+        level += 1; // Increase level by 1
+        allEnemies.push(new Enemy); //add a new enemy to the game
+        console.log('Current level is: ' + level);
     }
 }
 
@@ -77,37 +77,39 @@ Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+//Create move
 var moves = -1;
 
+//Handle key input
 Player.prototype.handleInput = function (keys) {
     moves += 1;
     switch(keys){
         case 'up':
             if (this.y >0) {
                 this.y -= 83;
-                console.log("player y is " + this.y);
+                console.log('player y is ' + this.y);
             };
             break;
         case 'down':
             if (this.y < 405) {
                 this.y += 83;
-                console.log("player y is " + this.y);
+                console.log('player y is ' + this.y);
             };
             break;
         case 'left':
             if (this.x >0) {
                 this.x -= 101;
-                console.log("player x is " + this.x);
+                console.log('player x is ' + this.x);
             };
             break;
         case 'right':
             if (this.x < 404) {
                 this.x += 101;
-                console.log("player x is " + this.x);
+                console.log('player x is ' + this.x);
             };
             break;
     }
-    console.log(moves + " moves so far...")
+    console.log(moves + ' moves so far...')
 
 }
 
