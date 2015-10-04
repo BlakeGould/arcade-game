@@ -36,25 +36,12 @@ Enemy.prototype.update = function(dt) {
         player.y >= this.y - 20 &&
         player.y <= this.y + 80
         ) {
-        level = 0;
+        level = 1;
         console.log("Current level is: " + level);
         player.x = 202;
         player.y = 405;
+        allEnemies = [new Enemy];
     }
-
-
-    // tests for collision logic
-    // if (3 <= 5 && 8 <= 10) {
-    //     console.log("Nailed it!");
-    // }
-    // if (
-    // 6 - 6 <= 5 &&
-    // 8 <= 10 &&
-    // 3===3 &&
-    // 5>4) {
-    //     console.log("Nailed it twice!");
-    // }
-
 }
 
 // Draw the enemy on the screen, required method for game
@@ -71,12 +58,9 @@ var Player = function() {
     //set Player initial location
     this.x = 202;
     this.y = 405;
-    // this.x = 0;
-    // this.y = 0;
-
 }
 
-var level = 0;
+var level = 1;
 
 Player.prototype.update = function () {
     // similar to update method for Enemy
@@ -84,6 +68,7 @@ Player.prototype.update = function () {
         this.x = 202;
         this.y = 405;
         level += 1;
+        allEnemies.push(new Enemy);
         console.log("Current level is: " + level);
     }
 }
@@ -92,7 +77,10 @@ Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+var moves = -1;
+
 Player.prototype.handleInput = function (keys) {
+    moves += 1;
     switch(keys){
         case 'up':
             if (this.y >0) {
@@ -119,10 +107,9 @@ Player.prototype.handleInput = function (keys) {
             };
             break;
     }
+    console.log(moves + " moves so far...")
 
 }
-
-
 
 
 // Now instantiate your objects.
@@ -130,9 +117,6 @@ Player.prototype.handleInput = function (keys) {
 // Place the player object in a variable called player
 var allEnemies = [new Enemy];
 var player = new Player;
-for (var i = 0; i < 4; i++){
-    allEnemies.push(new Enemy);
-}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
