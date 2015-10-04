@@ -1,6 +1,14 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+To run the game:
+1) Download the game folder from https://github.com/gouldbf/frontend-nanodegree-arcade-game.git
+2) Open index.html in your browser
 
-for self-checking their submission.
+Objective of the game:
+Move the player through the brick path into the water without colliding into an enemy.
+
+To play the game:
+1) Use arrow keys to move the character up, down, left, or right
+2) If the player moves into an enemy, the game(and the level count) are reset.
+3) After every successful crossing the level increases, along with the number of enemies...
