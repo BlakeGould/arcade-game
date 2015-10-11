@@ -13,7 +13,7 @@ var Enemy = function() {
 
     // set Enemy initial speed
     this.speed = 60 * Math.floor(Math.random() * 3 + 1);
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -40,14 +40,14 @@ Enemy.prototype.update = function(dt) {
         console.log('Current level is: ' + level);
         player.x = 202; //Return player to starting position
         player.y = 405;
-        allEnemies = [new Enemy]; //Reset to one enemy
+        allEnemies = [new Enemy()]; //Reset to one enemy
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update() (player update takes dt as an input just like enemy), render() and
@@ -58,7 +58,7 @@ var Player = function() {
     //set Player initial location
     this.x = 202;
     this.y = 405;
-}
+};
 
 var level = 1;
 
@@ -68,14 +68,14 @@ Player.prototype.update = function () {
         this.x = 202; // Reset player to beginning
         this.y = 405; // Reset player to beginning
         level += 1; // Increase level by 1
-        allEnemies.push(new Enemy); //add a new enemy to the game
+        allEnemies.push(new Enemy()); //add a new enemy to the game
         console.log('CURRENT LEVEL IS: ' + level);
     }
-}
+};
 
 Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 //Create move counter
 var moves = -1;
@@ -107,14 +107,14 @@ Player.prototype.handleInput = function (keys) {
             };
             break;
     }
-}
+};
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy];
-var player = new Player;
+var allEnemies = [new Enemy()];
+var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
